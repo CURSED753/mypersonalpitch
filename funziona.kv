@@ -1,0 +1,621 @@
+#:import Factory kivy.factory.Factory
+
+WindowManager:
+	FirstWindow:
+		id: screen1
+	SecondWindow:
+		id: screen2
+	ThirdWindow:
+		id: screen3
+
+
+
+<FirstWindow>:
+	name: "first"
+
+	GridLayout:
+		cols: 1
+		spacing: 5
+		padding: 5
+
+		Label:
+			text: "MY \nPERSONAL PITCH"
+			size_hint_y: 0.2
+			font_name: "CollegiateFLF"
+			font_size: "40"
+			halign: "center"
+
+
+		GridLayout:
+			cols: 2
+			spacing: 5
+			padding: 5
+			size_hint_y: 0.8
+
+			Button:
+				id: per_statistiche
+				text: "STATISTICHE"
+				background_color: "#333333"
+				canvas.before:
+					Color:
+						rgba: .5, .5, .5, 1
+					Line:
+						width: 2
+						rectangle: self.x, self.y, self.width, self.height
+				font_size: "20"
+				font_name: "Radley-Sans"
+				on_release: 
+					app.root.current = "second"
+					root.manager.transition.direction = "right"
+					root.statistiche()
+				on_press:
+					root.statistiche_press()
+
+			Button:
+				id: per_scheda
+				text: "SCHEDA"
+				background_color: "#333333"
+				canvas.before:
+					Color:
+						rgba: .5, .5, .5, 1
+					Line:
+						width: 2
+						rectangle: self.x, self.y, self.width, self.height
+				font_size: "20"
+				font_name: "Radley-Sans"
+				on_release:
+					app.root.current = "third"
+					root.manager.transition.direction = "left"
+					root.scheda()
+				on_press:
+					root.scheda_press()
+
+
+
+			Label:
+				text: "Istruzioni:"
+				font_name: "Radley-Sans"
+				font_size: "20"
+
+			Label:
+				text: "Seleziona la tipologia di adesione \ne premi invio"
+				halign: "center"
+				font_name: "Radley-Sans"
+
+			Label:
+				text: "Ente:"
+				font_name: "Radley-Sans"
+				font_size: "20"
+
+			Spinner:
+				id: spinner_ente
+				text: "Seleziona un ente"
+				values: ["Save The Children", "UNHCR", "WWF", "Telethon"]
+				font_name: "Radley-Sans"
+				font_size: "20"
+				background_color: "#333333"
+				canvas.before:
+					Color:
+						rgba: .5, .5, .5, 1
+					Line:
+						width: 2
+						rectangle: self.x, self.y, self.width, self.height
+				on_press: root.spinner1()
+				on_release: root.spinner1_release()
+			
+			Label:
+				text: "Qualita':"
+				font_name: "Radley-Sans"
+				font_size: "20"
+
+
+			Spinner:
+				id: spinner_qualita
+				text: "Seleziona la quantita'"
+				values: ["15", "20", "25", "30", "40", "50", "240", "360", "480", "600"]
+				font_name: "Radley-Sans"
+				font_size: "20"
+				background_color: "#333333"
+				canvas.before:
+					Color:
+						rgba: .5, .5, .5, 1
+					Line:
+						width: 2
+						rectangle: self.x, self.y, self.width, self.height
+				on_press: root.spinner2()
+				on_release: root.spinner2_release()
+
+			
+
+
+			Label:
+				text: "Periodo:"
+				font_name: "Radley-Sans"
+				font_size: "20"
+
+			Spinner:
+				id: spinner_periodo
+				text: "Seleziona il periodo"
+				values: ["Mensile", "Annuale"]
+				font_name: "Radley-Sans"
+				font_size: "20"
+				background_color: "#333333"
+				canvas.before:
+					Color:
+						rgba: .5, .5, .5, 1
+					Line:
+						width: 2
+						rectangle: self.x, self.y, self.width, self.height
+				on_press: root.spinner3()
+				on_release: root.spinner3_release()
+
+			
+
+
+			Label:
+				text: "Numero adesioni:"
+				font_name: "Radley-Sans"
+				font_size: "20"
+
+			Spinner:
+				id: spinner_numero_adesioni
+				text: "Quante ne hai fatte?"
+				values: ["1", "2", "3", "4"]
+				font_name: "Radley-Sans"
+				font_size: "20"
+				background_color: "#333333"
+				canvas.before:
+					Color:
+						rgba: .5, .5, .5, 1
+					Line:
+						width: 2
+						rectangle: self.x, self.y, self.width, self.height
+				on_press: root.spinner4()
+				on_release: root.spinner4_release()
+
+
+
+			Button:
+				id: inviata
+				text: "INVIA"
+				on_press: root.color()
+				on_release: root.invia()
+				font_name: "Radley-Sans"
+				font_size: "20"
+				background_color: "#333333"
+				canvas.before:
+					Color:
+						rgba: .5, .5, .5, 1
+					Line:
+						width: 2
+						rectangle: self.x, self.y, self.width, self.height
+
+			Label:
+				id: avviso
+				text: "Carica la tua adesione"
+				halign: "center"
+				font_name: "Radley-Sans"
+
+			
+
+
+<SecondWindow>:
+	name: "second"
+
+	GridLayout:
+		cols: 1
+		spacing: 5
+		padding: 5
+
+		Label:
+			text: "MY \nPERSONAL PITCH"
+			size_hint_y: 0.2
+			font_name: "CollegiateFLF"
+			font_size: "40"
+			halign: "center"
+
+		Button:
+			id: per_adesioni
+			background_color: "#333333"
+			canvas.before:
+				Color:
+					rgba: .5, .5, .5, 1
+				Line:
+					width: 2
+					rectangle: self.x, self.y, self.width, self.height
+			text: "ADESIONI"
+			size_hint_y: 0.1
+			font_size: "20"
+			font_name: "Radley-Sans"
+			on_release: 
+				app.root.current = "first"
+				root.manager.transition.direction = "left"
+				root.adesioni()
+			on_press:
+				root.per_adesioni()
+
+
+		GridLayout:
+			cols: 2
+			spacing: 5
+			padding: 5
+			size_hint_y: 0.70  
+
+			Label:
+				text: ""
+
+			Label:
+				text: ""
+
+			Label:
+				text: "Adesioni fatte:"
+				font_name: "Radley-Sans"
+				font_size: "20"
+
+			Label:
+				id: numero_adesioni
+				text: "0"
+
+			Label:
+				text: ""
+
+			Label:
+				text: ""
+
+			Label:
+				text: "Guadagno ottenuto \nin euro:"
+				font_name: "Radley-Sans"
+				font_size: "20"
+				halign: "center"
+
+			Label:
+				id: numero_guadagno
+				text: "0"
+
+			Label:
+				text: ""
+
+			Label:
+				text: ""
+
+			Button:
+				id: azzera
+				text: "AZZERA"
+				on_press:
+					root.color_azzera()
+				on_release:
+					root.color_azzera_release()
+					root.azzera()
+				font_name: "Radley-Sans"
+				font_size: "20"
+				background_color: "#333333"
+				canvas.before:
+					Color:
+						rgba: .5, .5, .5, 1
+					Line:
+						width: 2
+						rectangle: self.x, self.y, self.width, self.height
+
+<ThirdWindow>:
+	name: "third"
+
+	GridLayout:
+		cols: 1
+		spacing: 5
+		padding: 5
+
+		Label:
+			text: "MY \nPERSONAL PITCH"
+			size_hint_y: 0.2
+			font_name: "CollegiateFLF"
+			font_size: "40"
+			halign: "center"
+
+		Button:
+			id: per_home
+			text: "ADESIONI"
+			background_color: "#333333"
+			size_hint_y: 0.1
+			canvas.before:
+				Color:
+					rgba: .5, .5, .5, 1
+				Line:
+					width: 2
+					rectangle: self.x, self.y, self.width, self.height
+			font_size: "20"
+			font_name: "Radley-Sans"
+			on_release: 
+				app.root.current = "first"
+				root.manager.transition.direction = "right"
+				root.home()
+			on_press:
+				root.home_press()
+
+
+		GridLayout:
+			cols: 4
+			spacing: 5
+			padding: 5
+
+			size_hint_y: 0.7
+
+			Label:
+				text: "CLIENTE"
+				font_name: "Radley-Sans"
+				font_size: "12"
+
+
+			Label:
+				text: "RAPPORTO \nDONAZIONE"
+				font_name: "Radley-Sans"
+				font_size: "12"
+				halign: "center"
+
+
+			Label:
+				text: "CORRISPETTIVI"
+				font_name: "Radley-Sans"
+				font_size: "12"
+
+
+			Label:
+				text: "ADESIONI \nFATTE"
+				font_name: "Radley-Sans"
+				font_size: "12"
+				halign: "center"
+
+
+			Label:
+				text: "STC"
+				font_name: "Radley-Sans"
+				font_size: "12"
+
+			Label:
+				text: "15 Euro"
+
+			Label:
+				text: "33,00 Euro"
+
+			Label:
+				id: stc_15
+				text: "0"
+
+
+			Label:
+				text: "STC"
+				font_name: "Radley-Sans"
+				font_size: "12"
+
+			Label:
+				text: "20 Euro"
+
+			Label:
+				text: "47,00 Euro"
+
+			Label:
+				id: stc_20
+				text: "0"
+
+
+			Label:
+				text: "STC"
+				font_name: "Radley-Sans"
+				font_size: "12"
+
+			Label:
+				text: "25 Euro"
+
+			Label:
+				text: "54,00 Euro"
+
+			Label:
+				id: stc_25
+				text: "0"
+
+
+			Label:
+				text: "STC"
+				font_name: "Radley-Sans"
+				font_size: "12"
+
+			Label:
+				text: "30 Euro"
+
+			Label:
+				text: "60,00 Euro"
+
+			Label:
+				id: stc_30
+				text: "0"
+
+
+			Label:
+				text: "UNHCR"
+				font_name: "Radley-Sans"
+				font_size: "12"
+
+			Label:
+				text: "15 Euro"
+
+			Label:
+				text: "33,00 Euro"
+
+			Label:
+				id: unhcr_15
+				text: "0"
+
+
+			Label:
+				text: "UNHCR"
+				font_name: "Radley-Sans"
+				font_size: "12"
+
+			Label:
+				text: "20 Euro"
+
+			Label:
+				text: "47,00 Euro"
+
+			Label:
+				id: unhcr_20
+				text: "0"
+
+
+			Label:
+				text: "UNHCR"
+				font_name: "Radley-Sans"
+				font_size: "12"
+
+			Label:
+				text: "30 Euro"
+
+			Label:
+				text: "60,00 Euro"
+
+			Label:
+				id: unhcr_30
+				text: "0"
+
+
+			Label:
+				text: "UNHCR"
+				font_name: "Radley-Sans"
+				font_size: "12"
+
+			Label:
+				text: "40 Euro"
+
+			Label:
+				text: "70,00 Euro"
+
+			Label:
+				id: unhcr_40
+				text: "0"
+
+
+			Label:
+				text: "UNHCR"
+				font_name: "Radley-Sans"
+				font_size: "12"
+
+			Label:
+				text: "50 Euro"
+
+			Label:
+				text: "80,00 Euro"
+
+			Label:
+				id: unhcr_50
+				text: "0"
+
+
+			Label:
+				text: "TELETHON"
+				font_name: "Radley-Sans"
+				font_size: "12"
+
+			Label:
+				text: "15 Euro"
+
+			Label:
+				text: "33,00 Euro"
+
+			Label:
+				id: telethon_15
+				text: "0"
+
+
+			Label:
+				text: "TELETHON"
+				font_name: "Radley-Sans"
+				font_size: "12"
+
+			Label:
+				text: "20 Euro"
+
+			Label:
+				text: "47,00 Euro"
+
+			Label:
+				id: telethon_20
+				text: "0"
+
+
+			Label:
+				text: "TELETHON"
+				font_name: "Radley-Sans"
+				font_size: "12"
+
+			Label:
+				text: "30 Euro"
+
+			Label:
+				text: "60,00 Euro"
+
+			Label:
+				id: telethon_30
+				text: "0"
+
+
+			Label:
+				text: "WWF"
+				font_name: "Radley-Sans"
+				font_size: "12"
+
+			Label:
+				text: "15 Euro"
+
+			Label:
+				text: "33,00 Euro"
+
+			Label:
+				id: wwf_15
+				text: "0"
+
+
+			Label:
+				text: "WWF"
+				font_name: "Radley-Sans"
+				font_size: "12"
+
+			Label:
+				text: "20 Euro"
+
+			Label:
+				text: "47,00 Euro"
+
+			Label:
+				id: wwf_20
+				text: "0"
+
+
+			Label:
+				text: "WWF"
+				font_name: "Radley-Sans"
+				font_size: "12"
+
+			Label:
+				text: "25 Euro"
+
+			Label:
+				text: "54,00 Euro"
+
+			Label:
+				id: wwf_25
+				text: "0"
+
+
+			Label:
+				text: "WWF"
+				font_name: "Radley-Sans"
+				font_size: "12"
+
+			Label:
+				text: "30 Euro"
+
+			Label:
+				text: "60,00 Euro"
+
+			Label:
+				id: wwf_30
+				text: "0"
